@@ -1,0 +1,18 @@
+package com.danish.demo.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.danish.demo.model.Alien;
+
+import java.util.*;
+
+public interface AlienRepo extends JpaRepository<Alien, Integer>
+{
+	 List<Alien> findByTech(String tech);
+	 List<Alien> findByaIdGreaterThan(int aId);
+	 
+	 @Query("from Alien where tech =?1 order by aName")
+	 List<Alien> findByTechSorted(String tech);
+}
